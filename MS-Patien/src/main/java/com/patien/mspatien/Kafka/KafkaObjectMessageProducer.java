@@ -13,6 +13,6 @@ public class KafkaObjectMessageProducer {
 
     public void sendObjectMessage(RendezVousEvent event) {
         kafkaTemplate.send("patient-object-topic", event);
-        System.out.println("Objet envoyé: " + event);
+        System.out.println("Message Kafka envoyé (asynchrone): " + event);
     }
 }

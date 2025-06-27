@@ -7,14 +7,13 @@ import org.springframework.stereotype.Component;
 @Component
 public class KafkaObjectMessageConsumer {
 
-//    /@KafkaListener(
-//            topics = "patient-object-topic",
-//            groupId = "group-1",
-//            containerFactory = "kafkaListenerContainerFactory"
-//    )
-//    public void consumeObjectMessage(RendezVousEvent event) {
-//        System.out.println("Objet reçu - Patient ID: " + event.patientId());
-//        // Traitez l'objet ici
-//    }
-//
+    @KafkaListener(
+            topics = "patient-object-topic",
+            groupId = "group-1",
+            containerFactory = "objectKafkaListenerFactory"  // <== CORRECT
+    )
+    public void consumeObjectMessage(RendezVousEvent event) {
+        System.out.println("Objet reçu - Patient ID: " + event.patientId());
+        // Traitez l'objet ici
+    }
 }
