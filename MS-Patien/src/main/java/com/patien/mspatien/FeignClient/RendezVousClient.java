@@ -9,7 +9,9 @@ import java.util.List;
 
 @FeignClient(
         name = "rendezvous-service",
-        url = "${rendezvous.service.url:http://localhost:8082}" // Configurable via application.properties
+        url = "${rendezvous.service.url:http://localhost:8082}", // Configurable via application.properties
+        fallback =
+
 )
 public interface RendezVousClient {
     @GetMapping("/api/rendezvous/patient/{patientId}")
