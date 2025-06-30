@@ -65,8 +65,17 @@ public class PatientController {
 
     @PostMapping("/send")
     public ResponseEntity<String> sendPatient(@RequestBody PatientDTO patientDTO) {
+        // Afficher l'objet avant envoi
+        System.out.println("=== OBJET À ENVOYER ===");
+        System.out.println("PatientDTO reçu dans le contrôleur: " + patientDTO.toString());
+        System.out.println("ID: " + patientDTO.getId());
+        System.out.println("Nom: " + patientDTO.getNom());
+        System.out.println("Prénom: " + patientDTO.getPrenom());
+        System.out.println("Email: " + patientDTO.getEmail());
+        System.out.println("========================");
+
         producer.sendPatientMessage(patientDTO);
-        return ResponseEntity.ok("PatientDTO envoyé à Kafka");
+        return ResponseEntity.ok("PatientDTO envoyé à Kafka: " + patientDTO.toString());
     }
 
 }
