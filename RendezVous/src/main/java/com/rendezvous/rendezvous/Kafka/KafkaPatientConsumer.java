@@ -15,6 +15,7 @@ public class KafkaPatientConsumer {
         processPatient(patientDTO);
     }
 
+
     private void processPatient(PatientDTO patientDTO) {
         // Votre logique de traitement ici
         System.out.println("Traitement du patient: " + patientDTO.getNom() + " " + patientDTO.getPrenom());
