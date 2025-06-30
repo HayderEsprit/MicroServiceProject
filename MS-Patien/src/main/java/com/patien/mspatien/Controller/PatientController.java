@@ -1,8 +1,8 @@
 package com.patien.mspatien.Controller;
 
 import com.patien.mspatien.DTO.*;
-import com.patien.mspatien.Kafka.KafkaObjectMessageProducer;
-import com.patien.mspatien.Kafka.KafkaTextMessageProducer;
+
+import com.patien.mspatien.Kafka.KafkaPatientProducer;
 import com.patien.mspatien.Service.PatientService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -18,8 +18,8 @@ public class PatientController {
 
     private final PatientService patientService;
 
-    private final KafkaTextMessageProducer textMessageProducer;
-    private final KafkaObjectMessageProducer objectMessageProducer;
+    private final KafkaPatientProducer producer;
+
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public PatientResponseDto createPatient(@RequestBody PatientRequestDto patientRequestDto) {
@@ -63,17 +63,10 @@ public class PatientController {
 
     }
 
-
-    @PostMapping("/sendText")
-    public ResponseEntity<String> sendTextMessage(@RequestBody String message) {
-        textMessageProducer.sendTextMessage(message);
-        return ResponseEntity.ok("Message texte envoyé: " + message);
-    }
-
-    @PostMapping("/sendObject")
-    public ResponseEntity<String> sendObjectMessage(@RequestBody RendezVousEvent event) {
-        objectMessageProducer.sendObjectMessage(event);
-        return ResponseEntity.ok("Objet envoyé: " + event);
+    @PostMapping("/send")
+    public ResponseEntity<String> sendPatient(@RequestBody PatientDTO patientDTO) {
+        producer.sendPatientMessage(patientDTO);
+        return ResponseEntity.ok("PatientDTO envoyé à Kafka");
     }
 
 }

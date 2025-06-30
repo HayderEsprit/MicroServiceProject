@@ -9,8 +9,9 @@ import java.util.List;
 
 @FeignClient(
         name = "rendezvous-service",
-        url = "${rendezvous.service.url:http://localhost:8082}", // Configurable via application.properties
-        fallback =
+        url = "${rendezvous.service.url:http://localhost:8082}"
+     //   fallback = RendezVousClientFallback.class// Configurable via application.properties
+
 
 )
 public interface RendezVousClient {
