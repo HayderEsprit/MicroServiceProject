@@ -1,14 +1,6 @@
-#spring:
-# application:
-#   name: ms-patien
-# profiles:
-#   active: dev
-# config:
-#   import: optional:configserver:http://localhost:8888
+server:
+  port: 8081
 
-#logging:
-# level:
-#   org.springframework.cloud: DEBUG
-
-#server:
-# port: 8081
+spring:
+  application:
+    name: ms-patien
