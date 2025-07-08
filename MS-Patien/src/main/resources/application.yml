@@ -4,3 +4,15 @@ server:
 spring:
   application:
     name: ms-patien
+  config:
+    import: "configserver:http://localhost:8888"
+  profiles:
+    active: dev
+  cloud:
+    config:
+      fail-fast: true
+      retry:
+        initial-interval: 1000
+        max-attempts: 6
+        max-interval: 2000
+        multiplier: 1.1
